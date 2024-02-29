@@ -1,0 +1,21 @@
+{
+    "name": "Terraform-LocalStack",
+    "dockerComposeFile": "docker-compose.yaml",
+    "service": "terraform",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "oderwat.indent-rainbow",
+                "amazonwebservices.aws-toolkit-vscode",
+                "PKief.material-icon-theme",
+                "vscodevim.vim",
+                "ms-azuretools.vscode-docker",
+                "GitHub.copilot-chat",
+                "GitHub.copilot",
+                "github.vscode-github-actions",
+                "hashicorp.terraform"
+            ]
+        }
+    }
+}

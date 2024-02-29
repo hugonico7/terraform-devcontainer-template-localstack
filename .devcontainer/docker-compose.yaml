@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+
+  terraform:
+    container_name: terraform 
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    network_mode: service:localstack
+    volumes:
+      - ../:/workspace 
+      - /Users/Hugo/.ssh:/root/.ssh
+    environment:
+      - TF_LOG=INFO
+      - TF_LOG_PATH=crash.log
+  
+  localstack:
+    container_name: localstack-terraform
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "localstack-data:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+volumes:
+  localstack-data:
